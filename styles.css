@@ -515,130 +515,113 @@ footer p {
 }
 
 /* High Contrast Mode */
+/* High Contrast Mode Variables */
+:root.high-contrast {
+    --hc-bg: #ffffff;
+    --hc-text: #000000;
+    --hc-border: #000000;
+    --hc-primary: #0000ff; /* Added distinct primary color for interactive elements */
+}
+
+/* Base High Contrast Styles */
 .high-contrast {
-    --hc-bg: #ffffff !important;
-    --hc-text: color: var(--primary-color) !important;
-    --hc-border: #000000 !important;
     background-color: var(--hc-bg) !important;
     color: var(--hc-text) !important;
 }
 
+/* Navbar Styling */
 .high-contrast .navbar {
     background-color: var(--hc-bg) !important;
-    color: var(--hc-text) !important;
-    border-bottom: 0.125rem solid var(--hc-border) !important;
+    border-bottom: 2px solid var(--hc-border) !important;
 }
 
 .high-contrast .navbar-brand,
-.high-contrast .nav-link,
-.high-contrast .nav-link:hover,
-.high-contrast .nav-link:focus,
-.high-contrast .nav-link.active {
-    color: var(--primary-color) !important;
-    background-color: transparent !important;
+.high-contrast .nav-link {
+    color: var(--hc-text) !important;
+    text-decoration: underline; /* Added for better visibility */
 }
 
 .high-contrast .navbar-brand img {
-    filter: brightness(0);
+    filter: brightness(0) invert(0); /* Ensures logo visibility */
 }
 
+/* Navbar Toggle Button */
 .high-contrast .navbar-toggler {
-    border: 0.125rem solid var(--hc-text) !important;
+    border: 2px solid var(--hc-text) !important;
+    padding: 8px;
 }
 
 .high-contrast .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 1)' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    width: 1.5em;
+    height: 1.5em;
 }
 
-.high-contrast .main-container {
-    background-color: var(--hc-bg) !important;
-    color: var(--hc-text) !important;
-    border: 0.125rem solid var(--hc-border) !important;
-}
-
-.high-contrast .main-container *,
-.high-contrast .main-container .page-title,
-.high-contrast .main-container .page-subtitle,
-.high-contrast .main-container .section-title,
-.high-contrast .main-container .form-label,
-.high-contrast .main-container .form-text,
-.high-contrast .main-container .form-control,
-.high-contrast .main-container .form-select,
-.high-contrast .main-container .record-time,
-.high-contrast .main-container .record-status,
-.high-contrast .main-container .calendar-day,
-.high-contrast .main-container .calendar-records,
-.high-contrast .main-container .empty-state {
-    color: var(--primary-color) !important;
-    background-color: var(--hc-bg) !important;
-}
-
-.high-contrast .main-container .welcome .btn {
-    border: 0.125rem solid var(--hc-border) !important;
-}
-
-.high-contrast .main-container .form-select {
-    padding: 0.75rem; /* Increased padding for larger appearance */
-    min-height: 4rem; /* Increased height for larger dropdown */
-    width: 100%; /* Ensure full width of parent */
-}
-
-.high-contrast .content-section .form-select {
-    width: calc(100% - 2.5rem) !important; /* Override column width */
-}
-
+/* Content Areas */
+.high-contrast .main-container,
 .high-contrast .content-section {
     background-color: var(--hc-bg) !important;
-    color: var(--hc-text) !important;
-    border: 0.125rem solid var(--hc-border) !important;
+    border: 2px solid var(--hc-border) !important;
+    padding: 15px;
 }
 
-.high-contrast .form-control::placeholder,
-.high-contrast .form-select::placeholder {
-    color: var(--primary-color) !important;
-    font-size: 1.1rem;
+/* Typography */
+.high-contrast h1,
+.high-contrast h2,
+.high-contrast h3,
+.high-contrast .page-title,
+.high-contrast .section-title {
+    text-decoration: underline; /* Improves heading visibility */
 }
 
-.high-contrast .form-select option[disabled][selected] {
-    color: var(--primary-color) !important;
-    font-size: 1.1rem;
-}
-
-.high-contrast .btn-primary,
-.high-contrast .btn-danger,
-.high-contrast .btn-secondary,
-.high-contrast .btn-outline-danger,
-.high-contrast .btn-outline-secondary {
+/* Form Elements */
+.high-contrast .form-control,
+.high-contrast .form-select {
+    border: 2px solid var(--hc-border) !important;
     background-color: var(--hc-bg) !important;
     color: var(--hc-text) !important;
-    border: 0.125rem solid var(--hc-border) !important;
-    padding: 0.625rem;
-    min-height: 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 12px;
+    min-height: 50px;
 }
 
-.high-contrast .btn-primary:hover,
-.high-contrast .btn-danger:hover,
-.high-contrast .btn-secondary:hover,
-.high-contrast .btn-outline-danger:hover,
-.high-contrast .btn-outline-secondary:hover {
-    background-color: #e0e0e0 !important;
+.high-contrast .form-control::placeholder {
     color: var(--hc-text) !important;
+    opacity: 0.7;
 }
 
-.high-contrast .content-section .btn {
-    padding: 0.6875rem;
-    min-height: 4.25rem;
-}
-
-.high-contrast .alert-success,
-.high-contrast .alert-danger,
-.high-contrast .alert-info {
+/* Buttons */
+.high-contrast .btn {
+    border: 3px solid var(--hc-border) !important;
     background-color: var(--hc-bg) !important;
     color: var(--hc-text) !important;
-    border: 0.125rem solid var(--hc-border) !important;
+    padding: 12px 24px;
+    min-height: 50px;
+    font-weight: bold;
+}
+
+.high-contrast .btn:hover {
+    background-color: var(--hc-primary) !important;
+    color: var(--hc-bg) !important;
+}
+
+/* Alerts */
+.high-contrast .alert {
+    border: 3px solid var(--hc-border) !important;
+    background-color: var(--hc-bg) !important;
+}
+
+.high-contrast .alert-success {
+    border-color: green !important;
+}
+
+.high-contrast .alert-danger {
+    border-color: red !important;
+}
+
+/* Focus States - Critical for keyboard navigation */
+.high-contrast *:focus {
+    outline: 3px solid var(--hc-primary) !important;
+    outline-offset: 2px;
 }
 
 .high-contrast footer {
