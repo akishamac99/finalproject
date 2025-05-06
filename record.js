@@ -444,10 +444,6 @@ function handleResponsiveAdjustments() {
         });
     }
 }
-document.addEventListener('languageChange', (e) => {
-    if (typeof LanguageManager !== 'undefined') {
-        LanguageManager.setLanguage(e.detail.language);
-    }
-});
+
 // Initial responsive adjustments
 handleResponsiveAdjustments();
