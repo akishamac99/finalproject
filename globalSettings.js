@@ -17,14 +17,33 @@ document.addEventListener('DOMContentLoaded', () => {
             body, html {
                 overflow-x: hidden !important;
             }
-            .collapse, .collapsing {
-                transition: none !important;
-            }
             .navbar-collapse {
-                display: none;
+                transition: height 0.35s ease !important; /* Allow Bootstrap collapse transition */
             }
             .navbar-collapse.show {
                 display: block;
+            }
+            .navbar-toggler {
+                display: none !important; /* Hidden by default */
+            }
+            @media (max-width: 991.98px) {
+                .navbar-toggler {
+                    display: block !important; /* Visible on smaller screens */
+                    border: none;
+                    padding: 0.25rem 0.75rem;
+                    font-size: 1.25rem;
+                    line-height: 1;
+                    background-color: transparent;
+                    cursor: pointer;
+                }
+                .navbar-nav {
+                    padding: 1rem 0;
+                }
+            }
+            @media (min-width: 992px) {
+                .navbar-collapse {
+                    display: flex !important; /* Ensure navbar is visible on larger screens */
+                }
             }
         `;
         document.head.appendChild(styleOverride);
