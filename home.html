@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Track your medications with Pill Reminder.">
+    <meta name="keywords" content="pill reminder, medication tracker, health">
+    <title data-i18n="homeTitle">Home - Pill Reminder</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" as="style">
+    <link rel="preload" href="logo.png" as="image">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" 
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Inline Styles for Layout Stability -->
+    <style>
+        body {
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        header {
+            height: 5.625rem; /* Match 75percent_macario.html */
+            transition: none; /* Disable transitions */
+        }
+        main {
+            padding-top: 5.625rem; /* Match header height */
+            min-height: calc(100vh - 5.625rem - 3.5rem);
+            transition: none; /* Disable transitions */
+        }
+        .btn-primary {
+            transition: none; /* Disable button transitions */
+        }
+        .btn-primary:hover {
+            background-color: rgba(0, 123, 255, 0.9); /* Keep hover feedback */
+        }
+    </style>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💊</text></svg>">
+</head>
+<body>
+    <!-- Skip to main content link -->
+    <a href="#main-content" class="skip-link visually-hidden-focusable" data-i18n="skipToMain">Skip to main content</a>
+
+    <!-- Header with Navigation -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark" role="navigation" aria-label="Main navigation" data-i18n="nav">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="75percent_macario.html" aria-label="Pill Reminder Home" data-i18n="appName">
+                    <img src="logo.png" alt="Pill Reminder Logo" class="navbar-logo">
+                    <span>Pill Reminder</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="home.html" aria-current="page" data-i18n="homeNav">
+                                <i class="bi bi-house-door me-1" aria-hidden="true"></i> Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="records.html" data-i18n="recordsNav">
+                                <i class="bi bi-journal-text me-1" aria-hidden="true"></i> Records
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="accounts.html" data-i18n="accountNav">
+                                <i class="bi bi-person me-1" aria-hidden="true"></i> Account
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="settings.html" data-i18n="settingsNav">
+                                <i class="bi bi-gear me-1" aria-hidden="true"></i> Settings
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Alert Container -->
+    <div id="alertContainer" role="alert" aria-live="assertive"></div>
+    
+    <!-- Main Content -->
+    <main id="main-content" class="main-container" role="main">
+        <h1 class="page-title" data-i18n="trackerTitle"><i class="bi bi-capsule-pill"></i> Medication Tracker</h1>
+        
+        <!-- Morning Section -->
+        <section class="content-section" aria-labelledby="morningHeading">
+            <h2 id="morningHeading" class="section-title" data-i18n="morningSection">
+                <i class="bi bi-sunrise me-2" aria-hidden="true"></i>Morning
+            </h2>
+            <div class="row g-3 mb-3">
+                <div class="col-md-7">
+                    <label for="morningMedicine" class="form-label" data-i18n="medicineName">Medicine Name</label>
+                    <input type="text" class="form-control" id="morningMedicine" 
+                           placeholder="Enter Medicine" aria-label="Morning medication name">
+                </div>
+                <div class="col-md-3">
+                    <label for="morningTime" class="form-label" data-i18n="time">Time</label>
+                    <input type="time" class="form-control" id="morningTime" aria-label="Morning medication time">
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-primary" onclick="addMedicine('morning')" aria-label="Add morning medication" data-i18n="addButton">
+                        <i class="bi bi-plus-lg"></i> Add
+                    </button>
+                </div>
+            </div>
+            <div id="morningList" aria-live="polite"></div>
+        </section>
+
+        <!-- Afternoon Section -->
+        <section class="content-section" aria-labelledby="afternoonHeading">
+            <h2 id="afternoonHeading" class="section-title" data-i18n="afternoonSection">
+                <i class="bi bi-sun me-2" aria-hidden="true"></i>Afternoon
+            </h2>
+            <div class="row g-3 mb-3">
+                <div class="col-md-7">
+                    <label for="afternoonMedicine" class="form-label" data-i18n="medicineName">Medicine Name</label>
+                    <input type="text" class="form-control" id="afternoonMedicine" 
+                           placeholder="Enter Medicine" aria-label="Afternoon medication name">
+                </div>
+                <div class="col-md-3">
+                    <label for="afternoonTime" class="form-label" data-i18n="time">Time</label>
+                    <input type="time" class="form-control" id="afternoonTime" aria-label="Afternoon medication time">
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-primary" onclick="addMedicine('afternoon')" aria-label="Add afternoon medication" data-i18n="addButton">
+                        <i class="bi bi-plus-lg"></i> Add
+                    </button>
+                </div>
+            </div>
+            <div id="afternoonList" aria-live="polite"></div>
+        </section>
+
+        <!-- Evening Section -->
+        <section class="content-section" aria-labelledby="eveningHeading">
+            <h2 id="eveningHeading" class="section-title" data-i18n="eveningSection">
+                <i class="bi bi-moon-stars me-2" aria-hidden="true"></i>Evening
+            </h2>
+            <div class="row g-3 mb-3">
+                <div class="col-md-7">
+                    <label for="eveningMedicine" class="form-label" data-i18n="medicineName">Medicine Name</label>
+                    <input type="text" class="form-control" id="eveningMedicine" 
+                           placeholder="Enter Medicine" aria-label="Evening medication name">
+                </div>
+                <div class="col-md-3">
+                    <label for="eveningTime" class="form-label" data-i18n="time">Time</label>
+                    <input type="time" class="form-control" id="eveningTime" aria-label="Evening medication time">
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-primary" onclick="addMedicine('evening')" aria-label="Add evening medication" data-i18n="addButton">
+                        <i class="bi bi-plus-lg"></i> Add
+                    </button>
+                </div>
+            </div>
+            <div id="eveningList" aria-live="polite"></div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p class="m-0" data-i18n="footer">
+                <i class="bi bi-c-circle" aria-hidden="true"></i> 
+                <span>2025 Pill Reminder. All rights reserved.</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" 
+            crossorigin="anonymous" defer></script>
+    <!-- Global Settings Script -->
+    <script src="globalSettings.js" defer></script>
+    <!-- Home JavaScript -->
+    <script src="home.js" defer></script>
+    <!-- Language Initialization Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            LanguageManager.applyTranslations();
+        });
+    </script>
+  </body>
+</html>

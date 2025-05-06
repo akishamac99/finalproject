@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Customize your Pill Reminder experience with theme, notifications, and accessibility settings.">
+    <meta name="keywords" content="pill reminder, settings, accessibility, customization">
+    <title>Settings - Pill Reminder</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" 
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💊</text></svg>">
+</head>
+<body class="fade-in">
+    <a href="#main-content" class="skip-link visually-hidden-focusable">Skip to main content</a>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark" role="navigation" aria-label="Main navigation">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="home.html" aria-label="Pill Reminder Home">
+                    <img src="logo.png" alt="Pill Reminder Logo" class="navbar-logo">
+                    <span>Pill Reminder</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="home.html">
+                                <i class="bi bi-house-door me-1" aria-hidden="true"></i> Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="records.html">
+                                <i class="bi bi-journal-text me-1" aria-hidden="true"></i> Records
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="account.html">
+                                <i class="bi bi-person me-1" aria-hidden="true"></i> Account
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="settings.html" aria-current="page">
+                                <i class="bi bi-gear me-1" aria-hidden="true"></i> Settings
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div id="alertContainer" role="alert" aria-live="assertive"></div>
+    <main id="main-content" class="main-container" role="main">
+        <h1 class="page-title mb-4"><i class="bi bi-gear-fill me-2"></i> Settings</h1>
+        <div class="content-section mb-4">
+            <div class="section-title">
+                <i class="bi bi-paint-bucket me-2"></i> Theme and Appearance
+            </div>
+            <div class="row">
+                <div class="mb-3">
+                    <label for="theme" class="form-label">Theme</label>
+                    <select id="theme" class="form-select" aria-describedby="themeHelp">
+                        <option value="Light">Light</option>
+                        <option value="Dark">Dark</option>
+                    </select>
+                    <div id="themeHelp" class="form-text">Choose between light and dark themes.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="fontSize" class="form-label">Font Size</label>
+                    <select id="fontSize" class="form-select" aria-describedby="fontSizeHelp">
+                        <option value="12">12px</option>
+                        <option value="14">14px</option>
+                        <option value="16">16px</option>
+                        <option value="18">18px</option>
+                        <option value="20">20px</option>
+                        <option value="22">22px</option>
+                        <option value="24">24px</option>
+                    </select>
+                    <div id="fontSizeHelp" class="form-text">Adjust the font size (12px to 24px).</div>
+                </div>
+                <div class="mb-3">
+                    <label for="colorPicker" class="form-label">Primary Color</label>
+                    <input type="color" id="colorPicker" class="form-control form-control-color" value="#28a745" aria-describedby="colorHelp">
+                    <div id="colorHelp" class="form-text">Choose a primary color for the app.</div>
+                </div>
+                <div class="mb-3">
+                    <div class="form-check">
+                        <input type="checkbox" id="highContrast" class="form-check-input" aria-describedby="highContrastHelp">
+                        <label for="highContrast" class="form-check-label">High Contrast Mode</label>
+                        <div id="highContrastHelp" class="form-text">Enable high contrast for better visibility.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-section mb-4">
+            <div class="section-title">
+                <i class="bi bi-bell-fill me-2"></i> Notifications
+            </div>
+            <div class="row">
+                <div class="mb-3">
+                    <label for="notification" class="form-label">Notification Sound</label>
+                    <select id="notification" class="form-select" aria-describedby="notificationHelp">
+                        <option value="On">On</option>
+                        <option value="Off">Off</option>
+                    </select>
+                    <div id="notificationHelp" class="form-text">Enable or disable notification sounds.</div>
+                </div>
+            </div>
+        </div>
+        <div class="content-section mb-4">
+            <div class="section-title">
+                <i class="bi bi-accessibility me-2"></i> Text-to-Speech
+            </div>
+            <div class="row">
+                <div class="mb-3">
+                    <label for="tts" class="form-label">Text-to-Speech</label>
+                    <select id="tts" class="form-select" aria-describedby="ttsHelp">
+                        <option value="Enabled">Enabled</option>
+                        <option value="Disabled">Disabled</option>
+                    </select>
+                    <div id="ttsHelp" class="form-text">Enable or disable text-to-speech.</div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="text-center">
+        <div class="container">
+            <p class="m-0">
+                <i class="bi bi-c-circle" aria-hidden="true"></i> 
+                2025 Pill Reminder. All rights reserved.
+            </p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" 
+            crossorigin="anonymous" defer></script>
+    <script src="globalSettings.js" defer></script>
+    <script src="settings.js" defer></script>
+</body>
+</html>

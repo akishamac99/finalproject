@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Never miss a dose again! Pill Reminder helps you track medications with ease.">
+    <meta name="keywords" content="pill reminder, medication tracker, health app, accessibility">
+    <title data-i18n="appName">Pill Reminder</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" as="style">
+    <link rel="preload" href="FIRST.png" as="image">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" 
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Page-specific Styles -->
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0; /* Remove navbar padding */
+        }
+
+        header {
+            background-color: var(--primary-color, #28a745);
+            height: 5.625rem; /* Match --navbar-height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1100;
+        }
+
+        header .app-title {
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 5.625rem; /* Offset for header */
+            padding-bottom: 3.5rem; /* Offset for footer */
+            margin: 0;
+            min-height: calc(100vh - 5.625rem - 3.5rem);
+        }
+
+        #main-content.main-container {
+            background-color: var(--primary-color, #28a745);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 500px;
+            max-height: fit-content;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #main-content.main-container:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        #main-content.main-container .welcome {
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        #main-content.main-container .welcome h2 {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+        }
+
+        #main-content.main-container .logo {
+            margin: 0.75rem 0;
+        }
+
+        #main-content.main-container .logo img {
+            max-width: 100px;
+            height: auto;
+        }
+
+        #main-content.main-container .start-btn {
+            background-color: #ffffff;
+            color: var(--primary-color, #28a745);
+            border: none;
+            padding: 0.4rem 1.25rem;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        #main-content.main-container .start-btn:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+        }
+
+        /* Dark theme adjustments */
+        [data-theme="dark"] header {
+            background-color: var(--primary-color, #28a745);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        [data-theme="dark"] #main-content.main-container {
+            background-color: var(--primary-color, #28a745);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        [data-theme="dark"] #main-content.main-container:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0 pescado.4);
+        }
+
+        /* High contrast mode */
+        .high-contrast header {
+            background-color: var(--hc-bg, #ffffff) !important;
+            border-bottom: 0.125rem solid var(--hc-border, #000000) !important;
+        }
+
+        .high-contrast .app-title {
+            color: var(--primary-color, #28a745) !important;
+            text-shadow: none !important;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                height: 4.5rem; /* Scaled for smaller screens */
+            }
+
+            header .app-title {
+                font-size: 2rem;
+            }
+
+            main {
+                padding-top: 4.5rem;
+                padding-bottom: 3rem;
+                min-height: calc(100vh - 4.5rem - 3rem);
+            }
+
+            #main-content.main-container {
+                padding: 0.75rem;
+            }
+
+            #main-content.main-container .welcome h2 {
+                font-size: 1.25rem;
+            }
+
+            #main-content.main-container .logo img {
+                max-width: 80px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            header {
+                height: 3.5rem;
+            }
+
+            header .app-title {
+                font-size: 1.5rem;
+            }
+
+            main {
+                padding-top: 3.5rem;
+                padding-bottom: 2.8rem;
+                min-height: calc(100vh - 3.5rem - 2.8rem);
+            }
+
+            #main-content.main-container .welcome h2 {
+                font-size: 1rem;
+            }
+        }
+    </style>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💊</text></svg>">
+</head>
+<body>
+    <!-- Skip to main content link -->
+    <a href="#main-content" class="skip-link visually-hidden-focusable">Skip to main content</a>
+
+    <!-- Header -->
+    <header role="banner">
+        <h1 class="app-title" data-i18n="appName">Pill Reminder</h1>
+    </header>
+
+    <!-- Alert Container -->
+    <div id="alertContainer" role="alert" aria-live="assertive"></div>
+    
+    <!-- Main Content -->
+    <main id="main-content" class="main-container" role="main">
+        <div class="row justify-content-center align-items-center min-vh-100">
+            <div class="col-lg-8 col-md-10 welcome-container p-4 p-md-5">
+                <section class="welcome text-center" aria-labelledby="welcomeHeading">
+                    <h2 id="welcomeHeading" class="mb-4" data-i18n="welcomeMessage">Welcome to Pill Reminder! <br> Never miss a dose and track your pills!</h2> 
+                    <div class="logo mb-4">
+                        <img src="FIRST.png" alt="Pill Reminder App Logo - A medicine capsule with a clock icon" class="img-fluid" style="max-width: 200px; height: auto;">
+                    </div>
+                    <div class="mt-4">
+                        <a href="home.html" class="start-btn btn btn-lg fw-bold pulse" aria-label="Get started with Pill Reminder" data-i18n="getStarted">
+                            Get Started <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="m-0">
+                <i class="bi bi-c-circle" aria-hidden="true"></i> 
+                <span data-i18n="footer">2025 Pill Reminder. All rights reserved.</span>
+            </p>
+        </div>
+    </footer>   
+    
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" 
+            crossorigin="anonymous" defer></script>
+
+    <!-- Global Settings Script -->
+    <script src="globalSettings.js" defer></script>
+   </body>
+</html>
