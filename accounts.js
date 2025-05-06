@@ -422,18 +422,6 @@ function validateUsername(e) {
 
 // Validate Password Strength
 function validatePasswordStrength(e) {
-    const usernameInput = e.target;
-    const username = usernameInput.value.trim();
-    if (username && !USERNAME_REGEX.test(username)) {
-        usernameInput.classList.add('is-invalid');
-        showAlert('warning', 'Username can only contain letters, numbers, and underscores (3-20 characters).');
-    } else {
-        usernameInput.classList.remove('is-invalid');
-    }
-}
-
-// Validate Password Strength
-function validatePasswordStrength(e) {
     const passwordInput = e.target;
     const password = passwordInput.value;
     if (password.length > 0 && password.length < MIN_PASSWORD_LENGTH) {
@@ -695,11 +683,7 @@ function setupEventListeners() {
         });
     });
 }
-document.addEventListener('languageChange', (e) => {
-    if (typeof LanguageManager !== 'undefined') {
-        LanguageManager.setLanguage(e.detail.language);
-    }
-});
+
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     try {
